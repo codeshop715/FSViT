@@ -1,4 +1,5 @@
 # PMSF: A Patch-based Multi-Scale Metric for Few-Shot Classification
+
 ## Datasets
 We provide dataset classes and DDP dataloaders for CIFAR-FS, Mini-ImageNet and CDFSL(https://arxiv.org/abs/1912.07200v3) to our pipeline.
 
@@ -8,8 +9,8 @@ datasets/
 ├── cdfsl/                     # CDFSL datasets
 ├── episodic_dataset.py        # CIFAR-FS & Mini-ImageNet
 ├── __init__.py                # summary & interface
-├── meta_h5_dataset.py         # meta-dataset class to sample episodes and fetch data from h5 files
-├── meta_val_dataset.py        # meta-dataset class for validation with fixed val episodes
+├── mini_imagenet.py       # meta-dataset class to sample episodes and fetch data from h5 files
+├── cifar_fs.py        # meta-dataset class for validation with fixed val episodes
 ```
 
 ### CIFAR-FS and Mini-ImageNet
@@ -58,3 +59,18 @@ An meta-testing command example for CDFSL with fine-tuning is
 python test_bscdfsl.py --test_n_way 5 --n_shot 5 --device cuda:0 --arch dino_small_patch16 --deploy finetune --output outputs/your_experiment_name --resume outputs/your_experiment_name/best.pth --ada_steps 100 --ada_lr 0.0001 --aug_prob 0.9 --aug_types color transition
 ```
 Changing `--n_shot` to 1/5/20 to evaluate other settings.
+
+## Cite
+```
+@inproceedings{hu2022pmf,
+               author = {Hu, Shell Xu
+                         and Li, Da
+                         and St\"uhmer, Jan
+                         and Kim, Minyoung
+                         and Hospedales, Timothy M.},
+               title = {Pushing the Limits of Simple Pipelines for Few-Shot Learning:
+                        External Data and Fine-Tuning Make a Difference},
+               booktitle = {CVPR},
+               year = {2022}
+}
+```
