@@ -58,7 +58,7 @@ Because at least one episode has to be hosted on the GPU, the program is quite m
 ## Meta-Testing
 
 ### For datasets without domain shift
-Copy the same command for training and add `--eval`. For example, 5-way-5-shot training command of CIFAR-FS writes as
+Copy the same command for training and add `--eval`. For example, 5-way-5-shot training command of CIFAR-FS writes as：
 ```
 python main.py --output outputs/your_experiment_name --dataset cifar_fs --epoch 20 --lr 5e-5 --arch dino_small_patch16 --device cuda:0 --nSupport 5 --fp16 --eval
 ```
