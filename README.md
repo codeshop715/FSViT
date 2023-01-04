@@ -1,4 +1,12 @@
 # PMSF: A Patch-based Multi-Scale Metric for Few-Shot Classification
+## Pipline
+Our PMSF method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
+<p align="center">
+  <img src="C:\Users\宋明晨\Desktop\FormattingGuidelines-IJCAI-23\picture\1.pdf" width="480">
+</p>
+
+## Requirements
+Listed in requirements.txt. Install with pip install -r requirements.txt preferably in a virtualenv.
 
 ## Datasets
 We provide dataset classes and DDP dataloaders for CIFAR-FS, Mini-ImageNet and CDFSL(https://arxiv.org/abs/1912.07200v3) to our pipeline.
@@ -60,7 +68,7 @@ python test_bscdfsl.py --test_n_way 5 --n_shot 5 --device cuda:0 --arch dino_sma
 ```
 Changing `--n_shot` to 1/5/20 to evaluate other settings.
 
-## Cite
+## Citing P>M>F pipeline for few-shot learning 
 ```
 @inproceedings{hu2022pmf,
                author = {Hu, Shell Xu
