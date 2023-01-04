@@ -5,108 +5,49 @@ sys.path.append(BASE_DIR)
 import torch
 import numpy as np
 from functools import partial
-from .tl_dataFunctions import train_DataLaoder
 from .args import pertrain_argparser
 from .utils import *
-from torch.utils.data import DataLoader
-from torch.utils.data import DataLoader
 from .samplers import RASampler
 from .episodic_dataset import EpisodeDataset, EpisodeJSONDataset
-from .meta_val_dataset import MetaValDataset
-from .meta_h5_dataset import FullMetaDatasetH5
-from .meta_dataset.utils import Split
 
 
 def get_sets(args):
     if args.dataset == 'cifar_fs':
         from .cifar_fs import dataset_setting
-    elif args.dataset == 'cifar_fs_elite': # + elite data augmentation
-        from .cifar_fs_elite import dataset_setting
     elif args.dataset == 'mini_imagenet':
         from .mini_imagenet import dataset_setting
-    elif args.dataset == 'CUB':
-        opts = pertrain_argparser()
-        set_seed(opts.seed)
-        shot = 1
-        num_workers = 8
-        if shot == 1:
-            tr_way = 5
-            tr_shot = shot
-            tr_query = 15
-        else:
-            tr_way = 10
-            tr_shot = shot
-            tr_query = 15
-        tr_num_episode = 200
-        tr_tl_loader_, normalization = train_DataLaoder(opts)
-        va_ml_loader_ = fun_metaLoader(opts, normalization, n_eposide=300, file_name='/val.json')
-        opts_ = pertrain_argparser()
-        opts_.way = tr_way
-        opts_.shot = tr_shot
-        opts_.query = tr_query
-        tr_ml_loader_ = fun_metaLoader(opts, normalization, n_eposide=tr_num_episode, file_name='/train.json')
-        print(opts.dataset, ' dataset is loading...')
-        if not opts.random_val_task:
-            va_ml_loader_ = [x for x in va_ml_loader_]
-        va_ys = torch.arange(opts.way).repeat(opts.shot)
-        va_yq = torch.arange(opts.way).repeat(opts.query)
-        va_ys = va_ys.type(torch.cuda.LongTensor)
-        va_yq = va_yq.type(torch.cuda.LongTensor)
-
-        tr_ys = torch.arange(tr_way).repeat(tr_shot)
-        tr_yq = torch.arange(tr_way).repeat(tr_query)
-        tr_ys = tr_ys.type(torch.cuda.LongTensor)
-        tr_yq = tr_yq.type(torch.cuda.LongTensor)
-        # return tr_tl_loader_, tr_ml_loader_, va_ml_loader_, [va_ys, va_yq, tr_ys, tr_yq]
-        return tr_ml_loader_, va_ml_loader_
-        
-    elif args.dataset == 'meta_dataset':
-        if args.eval:
-            trainSet = valSet = None
-            testSet = FullMetaDatasetH5(args, Split.TEST)
-        else:
-            trainSet = FullMetaDatasetH5(args, Split.TRAIN)
-            valSet = {}
-            for source in args.val_sources:
-                valSet[source] = MetaValDataset(os.path.join(args.data_path, source,
-                                                             f'val_ep{args.nValEpisode}_img{args.image_size}.h5'),
-                                                num_episodes=args.nValEpisode)
-            testSet = None
-        return trainSet, valSet, testSet
     else:
         raise ValueError(f'{args.dataset} is not supported.')
 
-    # If not meta_dataset
-    if args.dataset != 'CUB':
-        trainTransform, valTransform, inputW, inputH, \
-        trainDir, valDir, testDir, episodeJson, nbCls = \
-                dataset_setting(args.nSupport, args.img_size)
+    trainTransform, valTransform, inputW, inputH, \
+    trainDir, valDir, testDir, episodeJson, nbCls = \
+            dataset_setting(args.nSupport, args.img_size)
 
-        trainSet = EpisodeDataset(imgDir = trainDir,
-                                nCls = args.nClsEpisode,
-                                nSupport = args.nSupport,
-                                nQuery = args.nQuery,
-                                transform = trainTransform,
-                                inputW = inputW,
-                                inputH = inputH,
-                                nEpisode = args.nEpisode)
+    trainSet = EpisodeDataset(imgDir = trainDir,
+                            nCls = args.nClsEpisode,
+                            nSupport = args.nSupport,
+                            nQuery = args.nQuery,
+                            transform = trainTransform,
+                            inputW = inputW,
+                            inputH = inputH,
+                            nEpisode = args.nEpisode)
 
-        valSet = EpisodeJSONDataset(episodeJson,
-                                    valDir,
-                                    inputW,
-                                    inputH,
-                                    valTransform)
+    valSet = EpisodeJSONDataset(episodeJson,
+                                valDir,
+                                inputW,
+                                inputH,
+                                valTransform)
 
-        testSet = EpisodeDataset(imgDir = testDir,
-                                nCls = args.nClsEpisode,
-                                nSupport = args.nSupport,
-                                nQuery = args.nQuery,
-                                transform = valTransform,
-                                inputW = inputW,
-                                inputH = inputH,
-                                nEpisode = args.nEpisode)
+    testSet = EpisodeDataset(imgDir = testDir,
+                            nCls = args.nClsEpisode,
+                            nSupport = args.nSupport,
+                            nQuery = args.nQuery,
+                            transform = valTransform,
+                            inputW = inputW,
+                            inputH = inputH,
+                            nEpisode = args.nEpisode)
 
-        return trainSet, valSet, testSet
+    return trainSet, valSet, testSet
 
 
 def get_loaders(args, num_tasks, global_rank):

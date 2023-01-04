@@ -189,7 +189,7 @@ if __name__ == '__main__' :
                                          normalize
                                         ])
 
-    TrainEpisodeSampler = EpisodeDataset(imgDir = './data/Mini-ImageNet/train',
+    TrainEpisodeSampler = EpisodeDataset(imgDir = '/idas/users/songmingchen/pmf_cvpr22-main/data/Mini-ImageNet/train',
                                          nCls = 5,
                                          nSupport = 5,
                                          nQuery = 15,

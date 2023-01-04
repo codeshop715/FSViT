@@ -3,8 +3,6 @@ from torch import nn
 import numpy as np
 import torch
 import math
-# from models.utils import *
-# from dataloader.data_utils import *
 from torch.autograd import Variable
 import torch.nn.functional as F
 import pprint
@@ -12,7 +10,6 @@ from einops import rearrange, repeat
 from einops.layers.torch import Rearrange
 import random
 import os
-from .ml_dataFunctions import SetDataManager
 
 
 def save_list_to_txt(name, input_list):
@@ -20,12 +17,6 @@ def save_list_to_txt(name, input_list):
     for item in input_list:
         f.write(item + '\n')
     f.close()
-
-
-def fun_metaLoader(args, normalization, n_eposide=400, file_name='/val.json'):
-    val_file = args.data_dir + args.dataset + file_name
-    val_datamgr = SetDataManager(args, normalization, args.way,  args.shot, args.query, n_eposide)
-    return val_datamgr.get_data_loader(val_file)
 
 
 def set_seed(seed):
