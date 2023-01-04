@@ -6,7 +6,11 @@ Our PMSF method extracts patch-based feature representation at multi-scale for b
 </p>
 
 ## Requirements
-Listed in requirements.txt. Install with pip install -r requirements.txt preferably in a virtualenv.
+Listed in requirements.txt. Install with：
+```
+pip install -r requirements.txt
+```
+The code was tested with Python 3.8.1 and Pytorch >= 1.7.0.
 
 ## Datasets
 We provide dataset classes and DDP dataloaders for CIFAR-FS, Mini-ImageNet and CDFSL(https://arxiv.org/abs/1912.07200v3) to our pipeline.
