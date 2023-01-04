@@ -6,7 +6,7 @@ Our PMSF method extracts patch-based feature representation at multi-scale for b
 </p>
 
 ## Requirements
-Listed in requirements.txt. Install with：
+Listed in `requirements.txt` Install with：
 ```
 pip install -r requirements.txt
 ```
