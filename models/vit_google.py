@@ -13,7 +13,6 @@ from torch.nn.modules.utils import _pair
 from scipy import ndimage
 
 from .utils import get_b16_config
-from .resnet_v2 import ResNetV2
 
 
 CONFIGS = {
@@ -140,10 +139,6 @@ class Embeddings(nn.Module):
             n_patches = (img_size[0] // patch_size[0]) * (img_size[1] // patch_size[1])
             self.hybrid = False
 
-        if self.hybrid:
-            self.hybrid_model = ResNetV2(block_units=config.resnet.num_layers,
-                                         width_factor=config.resnet.width_factor)
-            in_channels = self.hybrid_model.width * 16
         self.patch_size = patch_size
         self.patch_embeddings = Conv2d(in_channels=in_channels,
                                        out_channels=config.hidden_size,
