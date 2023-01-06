@@ -1,4 +1,17 @@
 # PMSF: A Patch-based Multi-Scale Metric for Few-Shot Classification
+## Pipline
+Our PMSF method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
+<p align="center">
+  <img src="https://tudingtu.cn/i/2023/01/04/ra2w00.png" width="800">
+</p>
+
+## Requirements
+Listed in `requirements.txt` Install with：
+```
+pip install -r requirements.txt
+```
+The code was tested with Python 3.8.1 and Pytorch >= 1.7.0.
+
 ## Datasets
 We provide dataset classes and DDP dataloaders for CIFAR-FS, Mini-ImageNet and CDFSL(https://arxiv.org/abs/1912.07200v3) to our pipeline.
 
@@ -8,8 +21,8 @@ datasets/
 ├── cdfsl/                     # CDFSL datasets
 ├── episodic_dataset.py        # CIFAR-FS & Mini-ImageNet
 ├── __init__.py                # summary & interface
-├── meta_h5_dataset.py         # meta-dataset class to sample episodes and fetch data from h5 files
-├── meta_val_dataset.py        # meta-dataset class for validation with fixed val episodes
+├── mini_imagenet.py       # Mini-ImageNet
+├── cifar_fs.py        # CIFAR-FS
 ```
 
 ### CIFAR-FS and Mini-ImageNet
@@ -38,16 +51,16 @@ Check [get_bscd_loader()](datasets/__init__.py#L158) for the data loader details
 It is recommended to run on a single GPU first by specifying `args.device = cuda:i`, where i is the GPU id to be used. 
 We use `args.nSupport` to set the number of shots. For example, 5-way-5-shot training command of CIFAR-FS writes as
 ```
-python main.py --output outputs/your_experiment_name --dataset cifar_fs --epoch 100 --lr 5e-5 --arch dino_small_patch16 --device cuda:0 --nSupport 5 --fp16
+python main.py --output outputs/your_experiment_name --dataset cifar_fs --epoch 20 --lr 5e-5 --arch dino_small_patch16 --device cuda:0 --nSupport 5 --fp16
 ```
 Because at least one episode has to be hosted on the GPU, the program is quite memory hungry. Mixed precision (`--fp16`) is recommended.
 
 ## Meta-Testing
 
 ### For datasets without domain shift
-Copy the same command for training and add `--eval`. For example, 5-way-5-shot training command of CIFAR-FS writes as
+Copy the same command for training and add `--eval`. For example, 5-way-5-shot training command of CIFAR-FS writes as：
 ```
-python main.py --output outputs/your_experiment_name --dataset cifar_fs --epoch 100 --lr 5e-5 --arch dino_small_patch16 --device cuda:0 --nSupport 5 --fp16 --eval
+python main.py --output outputs/your_experiment_name --dataset cifar_fs --epoch 20 --lr 5e-5 --arch dino_small_patch16 --device cuda:0 --nSupport 5 --fp16 --eval
 ```
 
 ### Cross-domain few-shot learning
@@ -58,3 +71,18 @@ An meta-testing command example for CDFSL with fine-tuning is
 python test_bscdfsl.py --test_n_way 5 --n_shot 5 --device cuda:0 --arch dino_small_patch16 --deploy finetune --output outputs/your_experiment_name --resume outputs/your_experiment_name/best.pth --ada_steps 100 --ada_lr 0.0001 --aug_prob 0.9 --aug_types color transition
 ```
 Changing `--n_shot` to 1/5/20 to evaluate other settings.
+
+## Citing P>M>F pipeline for few-shot learning 
+```
+@inproceedings{hu2022pmf,
+               author = {Hu, Shell Xu
+                         and Li, Da
+                         and St\"uhmer, Jan
+                         and Kim, Minyoung
+                         and Hospedales, Timothy M.},
+               title = {Pushing the Limits of Simple Pipelines for Few-Shot Learning:
+                        External Data and Fine-Tuning Make a Difference},
+               booktitle = {CVPR},
+               year = {2022}
+}
+```
