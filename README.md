@@ -1,6 +1,6 @@
-# PMSF: A Patch-based Multi-Scale Metric for Few-Shot Classification
+# FST: A Patch-based Multi-Scale Metric for Few-Shot Classification
 ## Pipline
-Our PMSF method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
+Our FST method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
 <p align="center">
   <img src="https://tudingtu.cn/i/2023/01/04/ra2w00.png" width="800">
 </p>
