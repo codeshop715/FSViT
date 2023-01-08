@@ -33,7 +33,7 @@ class ProtoNet(nn.Module):
                 c = a @ b.transpose(0, 1)
                 d = c.max(dim=1) # dim=1 is maximized by column (it is commonly understood to maximize each row)
                 a, idx1 = torch.sort(d[0], descending=True)# descending is False, ascending, and True, descending
-                max6 = a[0:6].sum()
+                max5 = a[0:5].sum()
                 all_distances1[i][j] = max6
        
         all_distances1 = all_distances1.unsqueeze(0)

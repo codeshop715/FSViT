@@ -279,11 +279,7 @@ class VisionTransformer(nn.Module):
             patch1313 = patch1313.transpose(1,2)
 
             patch14 = patch_yuan.mean(dim=1,keepdim = True)
-
-        
-            # cdfsl
-            patch_merging = torch.cat([patch22,patch33,patch44,patch55,patch66,patch77,patch88,patch_yuan,],dim=1)
-
+            # multi-scale patches
             patch_merging = torch.cat([patch22,patch33,patch44,patch55,patch66,patch77,patch88,patch99,
             patch10,patch11,patch1212,patch1313,patch_yuan,patch14],dim=1)
            
