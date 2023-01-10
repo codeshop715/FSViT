@@ -306,6 +306,34 @@ class VisionTransformer(nn.Module):
         self.AvgPool1212 = nn.AvgPool2d(12, stride=1)
         self.AvgPool1313 = nn.AvgPool2d(13, stride=1)
 
+        # # regular patch（stride=2）
+        # self.AvgPool22 = nn.AvgPool2d(2, stride=2)
+        # self.AvgPool33 = nn.AvgPool2d(3, stride=2)
+        # self.AvgPool44 = nn.AvgPool2d(4, stride=2)
+        # self.AvgPool55 = nn.AvgPool2d(5, stride=2)
+        # self.AvgPool66 = nn.AvgPool2d(6, stride=2)
+        # self.AvgPool77 = nn.AvgPool2d(7, stride=2)
+        # self.AvgPool88 = nn.AvgPool2d(8, stride=2)
+        # self.AvgPool99 = nn.AvgPool2d(9, stride=2)
+        # self.AvgPool10 = nn.AvgPool2d(10, stride=2)
+        # self.AvgPool11 = nn.AvgPool2d(11,stride=2)
+        # self.AvgPool1212 = nn.AvgPool2d(12, stride=2)
+        # self.AvgPool1313 = nn.AvgPool2d(13, stride=2)
+
+        # regular patch（stride=3）
+        # self.AvgPool22 = nn.AvgPool2d(2, stride=3)
+        # self.AvgPool33 = nn.AvgPool2d(3, stride=3)
+        # self.AvgPool44 = nn.AvgPool2d(4, stride=3)
+        # self.AvgPool55 = nn.AvgPool2d(5, stride=3)
+        # self.AvgPool66 = nn.AvgPool2d(6, stride=3)
+        # self.AvgPool77 = nn.AvgPool2d(7, stride=3)
+        # self.AvgPool88 = nn.AvgPool2d(8, stride=3)
+        # self.AvgPool99 = nn.AvgPool2d(9, stride=3)
+        # self.AvgPool10 = nn.AvgPool2d(10, stride=3)
+        # self.AvgPool11 = nn.AvgPool2d(11,stride=3)
+        # self.AvgPool1212 = nn.AvgPool2d(12, stride=3)
+        # self.AvgPool1313 = nn.AvgPool2d(13, stride=3)
+
 
         self.transformer = Transformer(config, img_size, vis)
         #self.head = Linear(config.hidden_size, num_classes)
