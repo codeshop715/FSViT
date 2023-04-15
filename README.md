@@ -1,4 +1,4 @@
-# FST: A Patch-based Multi-Scale Metric for Few-Shot Classification
+# FST: Matching Multi-Scale Feature Sets in Vision Transformer for Few-Shot Classification
 ## Pipline
 Our FST method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
 <p align="center">
@@ -11,6 +11,8 @@ Listed in `requirements.txt` Install with：
 pip install -r requirements.txt
 ```
 The code was tested with Python 3.8.1 and Pytorch >= 1.7.0.
+We experimented on a single GEFORCE RTX 3090. 
+The minimum GPU memory is 24GB. 
 
 ## Datasets
 We provide dataset classes and DDP dataloaders for CIFAR-FS, Mini-ImageNet and CDFSL(https://arxiv.org/abs/1912.07200v3) to our pipeline.
