@@ -1,6 +1,6 @@
-# FST: Matching Multi-Scale Feature Sets in Vision Transformer for Few-Shot Classification
+# FSViT: Matching Multi-Scale Feature Sets in Vision Transformer for Few-Shot Classification
 ## Pipline
-Our FST method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
+Our FSViT method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
 ![alt text](pipline.png)
 
 ## Requirements
