@@ -78,6 +78,7 @@ FSViT is the first few-shot classification method to learn the multi-scale featu
 
 Visualization of the relationship between multi-scale feature extraction and patch to patch matching metric by FSViT. We evaluated them by FSViT (ViT-small and ViT-base) and averaged over the test set of 5-way 1-shot/5-shot tasks on CFAIR-FS and Mini-Imagenet. The best classification performance is achieved when the grid pooling stride is set to 3, the number of extracted multi-scale features is 311, and the $m$ in top-m is set to 5.
 ![alt text](9.png)
+
 ## Citing P>M>F pipeline for few-shot learning 
 ```
 @inproceedings{hu2022pmf,
