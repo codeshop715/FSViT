@@ -130,34 +130,6 @@ class VisionTransformer(nn.Module):
         super().__init__()
         self.num_features = self.embed_dim = embed_dim
 
-        # regular patch stride=1
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=1)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=1)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=1)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=1)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=1)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=1)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=1)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=1)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=1)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=1)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=1)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=1)
-
-        # # regular patch（stride=2）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=2)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=2)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=2)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=2)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=2)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=2)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=2)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=2)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=2)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=2)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=2)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=2)
-
         # regular patch（stride=3）
         self.AvgPool22 = nn.AvgPool2d(2, stride=3)
         self.AvgPool33 = nn.AvgPool2d(3, stride=3)
@@ -171,105 +143,7 @@ class VisionTransformer(nn.Module):
         self.AvgPool11 = nn.AvgPool2d(11, stride=3)
         self.AvgPool1212 = nn.AvgPool2d(12, stride=3)
         self.AvgPool1313 = nn.AvgPool2d(13, stride=3)
-
-        # # regular patch（stride=4）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=4)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=4)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=4)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=4)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=4)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=4)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=4)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=4)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=4)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=4)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=4)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=4)
-
-        # # regular patch（stride=patch）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=2)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=3)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=4)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=5)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=6)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=7)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=8)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=9)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=10)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=11)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=12)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=13)
-
-        # # regular patch（stride=5）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=5)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=5)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=5)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=5)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=5)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=5)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=5)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=5)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=5)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=5)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=5)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=5)
-
-        # # regular patch（stride=6）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=6)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=6)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=6)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=6)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=6)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=6)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=6)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=6)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=6)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=6)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=6)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=6)
-
-        # # regular patch（stride=7）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=7)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=7)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=7)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=7)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=7)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=7)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=7)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=7)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=7)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=7)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=7)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=7)
-
-        # # regular patch（stride=8）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=8)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=8)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=8)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=8)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=8)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=8)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=8)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=8)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=8)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=8)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=8)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=8)
-
-        # # regular patch（stride=9）
-        # self.AvgPool22 = nn.AvgPool2d(2, stride=9)
-        # self.AvgPool33 = nn.AvgPool2d(3, stride=9)
-        # self.AvgPool44 = nn.AvgPool2d(4, stride=9)
-        # self.AvgPool55 = nn.AvgPool2d(5, stride=9)
-        # self.AvgPool66 = nn.AvgPool2d(6, stride=9)
-        # self.AvgPool77 = nn.AvgPool2d(7, stride=9)
-        # self.AvgPool88 = nn.AvgPool2d(8, stride=9)
-        # self.AvgPool99 = nn.AvgPool2d(9, stride=9)
-        # self.AvgPool10 = nn.AvgPool2d(10, stride=9)
-        # self.AvgPool11 = nn.AvgPool2d(11,stride=9)
-        # self.AvgPool1212 = nn.AvgPool2d(12, stride=9)
-        # self.AvgPool1313 = nn.AvgPool2d(13, stride=9)
-
+        
         self.patch_embed = PatchEmbed(
             img_size=img_size[0], patch_size=patch_size, in_chans=in_chans, embed_dim=embed_dim)
         num_patches = self.patch_embed.num_patches
@@ -344,7 +218,7 @@ class VisionTransformer(nn.Module):
 
         return self.pos_drop(x)
 
-    def forward(self, x, ada_token=None, use_patches=True):
+    def forward(self, x, ada_token=None, use_patches = True):
 
         # print(x.size())
         x = self.prepare_tokens(x, ada_token)
@@ -354,95 +228,89 @@ class VisionTransformer(nn.Module):
         for blk in self.blocks:
             x, attenpool = blk(x)
         x = self.norm(x)
-        # print(attenpool.size())
+    
+        patch_yuan = x[:, 1:, :]
+        attenpool = attenpool[:, 1:]
 
-        if use_patches:
-            # print(x[:, 1:,:].size())
-            patch_yuan = x[:, 1:, :]
-            attenpool = attenpool[:, 1:]
+        # use attenpool
+        patch_yuan = torch.mul(patch_yuan, attenpool.unsqueeze(2))
 
-            # use attenpool
-            patch_yuan = torch.mul(patch_yuan, attenpool.unsqueeze(2))
+        batchsize = patch_yuan.size(0)
+        embedding_dim = patch_yuan.size(2)
+        scale = int(patch_yuan.size(1) ** 0.5)
+        patch_sum = patch_yuan.view(batchsize, scale, scale, -1)
+        patch_sum = patch_sum.transpose(2, 3)
+        patch_sum = patch_sum.transpose(1, 2)
 
-            batchsize = patch_yuan.size(0)
-            embedding_dim = patch_yuan.size(2)
-            scale = int(patch_yuan.size(1) ** 0.5)
-            patch_sum = patch_yuan.view(batchsize, scale, scale, -1)
-            patch_sum = patch_sum.transpose(2, 3)
-            patch_sum = patch_sum.transpose(1, 2)
+        # multi-scale patches
+        patch22 = self.AvgPool22(patch_sum)
+        patch22 = patch22.view(batchsize, embedding_dim, -1)
+        patch22 = patch22.transpose(1, 2)
+        # print(patch22.size())
 
-            # multi-scale patches
-            patch22 = self.AvgPool22(patch_sum)
-            patch22 = patch22.view(batchsize, embedding_dim, -1)
-            patch22 = patch22.transpose(1, 2)
-            # print(patch22.size())
+        patch33 = self.AvgPool33(patch_sum)
+        patch33 = patch33.view(batchsize, embedding_dim, -1)
+        patch33 = patch33.transpose(1, 2)
+        # print(patch33.size())
 
-            patch33 = self.AvgPool33(patch_sum)
-            patch33 = patch33.view(batchsize, embedding_dim, -1)
-            patch33 = patch33.transpose(1, 2)
-            # print(patch33.size())
+        patch44 = self.AvgPool44(patch_sum)
+        patch44 = patch44.view(batchsize, embedding_dim, -1)
+        patch44 = patch44.transpose(1, 2)
+        # print(patch44.size())
 
-            patch44 = self.AvgPool44(patch_sum)
-            patch44 = patch44.view(batchsize, embedding_dim, -1)
-            patch44 = patch44.transpose(1, 2)
-            # print(patch44.size())
+        patch55 = self.AvgPool55(patch_sum)
+        patch55 = patch55.view(batchsize, embedding_dim, -1)
+        patch55 = patch55.transpose(1, 2)
+        # print(patch55.size())
 
-            patch55 = self.AvgPool55(patch_sum)
-            patch55 = patch55.view(batchsize, embedding_dim, -1)
-            patch55 = patch55.transpose(1, 2)
-            # print(patch55.size())
+        patch66 = self.AvgPool66(patch_sum)
+        patch66 = patch66.view(batchsize, embedding_dim, -1)
+        patch66 = patch66.transpose(1, 2)
+        # print(patch66.size())
 
-            patch66 = self.AvgPool66(patch_sum)
-            patch66 = patch66.view(batchsize, embedding_dim, -1)
-            patch66 = patch66.transpose(1, 2)
-            # print(patch66.size())
+        patch77 = self.AvgPool77(patch_sum)
+        patch77 = patch77.view(batchsize, embedding_dim, -1)
+        patch77 = patch77.transpose(1, 2)
+        # print(patch77.size())
 
-            patch77 = self.AvgPool77(patch_sum)
-            patch77 = patch77.view(batchsize, embedding_dim, -1)
-            patch77 = patch77.transpose(1, 2)
-            # print(patch77.size())
+        patch88 = self.AvgPool88(patch_sum)
+        patch88 = patch88.view(batchsize, embedding_dim, -1)
+        patch88 = patch88.transpose(1, 2)
+        # print(patch88.size())
 
-            patch88 = self.AvgPool88(patch_sum)
-            patch88 = patch88.view(batchsize, embedding_dim, -1)
-            patch88 = patch88.transpose(1, 2)
-            # print(patch88.size())
+        patch99 = self.AvgPool99(patch_sum)
+        patch99 = patch99.view(batchsize, embedding_dim, -1)
+        patch99 = patch99.transpose(1, 2)
+        # print(patch99.size())
 
-            patch99 = self.AvgPool99(patch_sum)
-            patch99 = patch99.view(batchsize, embedding_dim, -1)
-            patch99 = patch99.transpose(1, 2)
-            # print(patch99.size())
+        patch10 = self.AvgPool10(patch_sum)
+        patch10 = patch10.view(batchsize, embedding_dim, -1)
+        patch10 = patch10.transpose(1, 2)
+        # print(patch10.size())
 
-            patch10 = self.AvgPool10(patch_sum)
-            patch10 = patch10.view(batchsize, embedding_dim, -1)
-            patch10 = patch10.transpose(1, 2)
-            # print(patch10.size())
+        patch11 = self.AvgPool11(patch_sum)
+        patch11 = patch11.view(batchsize, embedding_dim, -1)
+        patch11 = patch11.transpose(1, 2)
+        # print(patch11.size())
 
-            patch11 = self.AvgPool11(patch_sum)
-            patch11 = patch11.view(batchsize, embedding_dim, -1)
-            patch11 = patch11.transpose(1, 2)
-            # print(patch11.size())
+        patch1212 = self.AvgPool1212(patch_sum)
+        patch1212 = patch1212.view(batchsize, embedding_dim, -1)
+        patch1212 = patch1212.transpose(1, 2)
+        # print(patch1212.size())
 
-            patch1212 = self.AvgPool1212(patch_sum)
-            patch1212 = patch1212.view(batchsize, embedding_dim, -1)
-            patch1212 = patch1212.transpose(1, 2)
-            # print(patch1212.size())
+        patch1313 = self.AvgPool1313(patch_sum)
+        patch1313 = patch1313.view(batchsize, embedding_dim, -1)
+        patch1313 = patch1313.transpose(1, 2)
+        # print(patch1313.size())
 
-            patch1313 = self.AvgPool1313(patch_sum)
-            patch1313 = patch1313.view(batchsize, embedding_dim, -1)
-            patch1313 = patch1313.transpose(1, 2)
-            # print(patch1313.size())
+        patch14 = patch_yuan.mean(dim=1, keepdim=True)
 
-            patch14 = patch_yuan.mean(dim=1, keepdim=True)
+        # multi-scale patches
+        patch_merging = torch.cat([patch22, patch33, patch44, patch55, patch66, patch77, patch88, patch99,
+                                   patch10, patch11, patch1212, patch1313, patch_yuan, patch14], dim=1)
+        # print(patch_merging.size())
 
-            # multi-scale patches
-            patch_merging = torch.cat([patch22, patch33, patch44, patch55, patch66, patch77, patch88, patch99,
-                                       patch10, patch11, patch1212, patch1313, patch_yuan, patch14], dim=1)
-            # print(patch_merging.size())
-
-            return patch_merging
-
-        # else:
-        #     return x[:, 0]
+        return patch_merging
 
     def get_last_selfattention(self, x):
         x = self.prepare_tokens(x)
