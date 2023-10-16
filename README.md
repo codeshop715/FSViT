@@ -44,7 +44,7 @@ Check [get_bscd_loader()](datasets/__init__.py#L158) for the data loader details
 
 ### On CIFAR-FS and Mini-ImageNet
 It is recommended to run on a single GPU first by specifying `args.device = cuda:i`, where i is the GPU id to be used. 
-We use `args.nSupport` to set the number of shots. For example, 5-way-5-shot training command of CIFAR-FS writes as
+We use `args.nSupport` to set the number of shots.
 ```
 python main.py --output outputs/your_experiment_name --dataset cifar_fs --epoch 20 --lr 5e-5 --arch dino_small_patch16 --device cuda:0 --nSupport 5 --fp16
 ```
@@ -53,15 +53,12 @@ Because at least one episode has to be hosted on the GPU, the program is quite m
 ## Meta-Testing
 
 ### For datasets without domain shift
-Copy the same command for training and add `--eval`. For example, 5-way-5-shot training command of CIFAR-FS writes as：
+Copy the same command for training and add `--eval`. 
 ```
 python main.py --output outputs/your_experiment_name --dataset cifar_fs --epoch 20 --lr 5e-5 --arch dino_small_patch16 --device cuda:0 --nSupport 5 --fp16 --eval
 ```
 
 ### Cross-domain few-shot learning
-Meta-testing CDFSL is almost the same as described in previous section for Meta-Dataset. However, we create another script [test_bscdfsl.py](test_bscdfsl.py) to fit CDFSL's original data loaders. 
-
-An meta-testing command example for CDFSL with fine-tuning is
 ```
 python test_bscdfsl.py --test_n_way 5 --n_shot 5 --device cuda:0 --arch dino_small_patch16 --deploy finetune --output outputs/your_experiment_name --resume outputs/your_experiment_name/best.pth --ada_steps 100 --ada_lr 0.0001 --aug_prob 0.9 --aug_types color transition
 ```
