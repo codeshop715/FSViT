@@ -1,6 +1,5 @@
-# FSViT: Matching Multi-Scale Feature Sets in Vision Transformer for Few-Shot Classification
+# FSViT
 ## Pipline
-Our FSViT method extracts patch-based feature representation at multi-scale for both of the support set and query set, which the patch merging operation is handled by global/local average pooling. The patch-to-patch metric is then computed over the embeddings for multi-scale patches.
 ![alt text](pipline.png)
 
 ## Requirements
@@ -13,8 +12,6 @@ We experimented on a single GEFORCE RTX 3090.
 The minimum GPU memory is 24GB. 
 
 ## Datasets
-We provide dataset classes and DDP dataloaders for CIFAR-FS, Mini-ImageNet and CDFSL(https://arxiv.org/abs/1912.07200v3) to our pipeline.
-
 The overall structure of the `datasets` folder is the following:
 ```
 datasets/
@@ -33,8 +30,7 @@ sh download_miniimagenet.sh
 ```
 To use these two datasets, set `--dataset cifar_fs` or `--dataset mini_imagenet`.
 
-### CDFSL
-The purpose of this benchmark is to evaluate how model trained on Mini-ImageNet (source domain) performs on cross-domain meta-test tasks. 
+### CDFSL 
 So we only need to download the [target domains](https://github.com/yunhuiguo/CVPR-2021-L2ID-Classification-Challenges#target-domains), and extract the files into `./data/`.
 You'll need to have these 4 sub-folders: 
 ```
@@ -73,10 +69,7 @@ python test_bscdfsl.py --test_n_way 5 --n_shot 5 --device cuda:0 --arch dino_sma
 Changing `--n_shot` to 1/5/20 to evaluate other settings.
 
 ## Visualization
-FSViT is the first few-shot classification method to learn the multi-scale feature sets of images via ViT. FSViT extracts rich multi-scale information with the attention-aware grid pooling operation and perform accurate classification with the patch-to-patch matching metric. It exploits the full potential of ViT for few-shot classification tasks, and outperforms existing ViT models.
 ![alt text](2.png)
-
-Visualization of the relationship between multi-scale feature extraction and patch to patch matching metric by FSViT. We evaluated them by FSViT (ViT-small and ViT-base) and averaged over the test set of 5-way 1-shot/5-shot tasks on CFAIR-FS and Mini-Imagenet. The best classification performance is achieved when the grid pooling stride is set to 3, the number of extracted multi-scale features is 311, and the $m$ in top-m is set to 5.
 ![alt text](9.png)
 
 ## Citing P>M>F pipeline for few-shot learning 
