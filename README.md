@@ -1,4 +1,4 @@
-## Pipline
+## Pipeline
 ![alt text](pipline.png)
 
 ## Requirements
