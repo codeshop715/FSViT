@@ -68,17 +68,8 @@ Changing `--n_shot` to 1/5/20 to evaluate other settings.
 ![alt text](2.png)
 ![alt text](9.png)
 
-## Citing P>M>F pipeline for few-shot learning 
+## Acknowledgment
 ```
-@inproceedings{hu2022pmf,
-               author = {Hu, Shell Xu
-                         and Li, Da
-                         and St\"uhmer, Jan
-                         and Kim, Minyoung
-                         and Hospedales, Timothy M.},
-               title = {Pushing the Limits of Simple Pipelines for Few-Shot Learning:
-                        External Data and Fine-Tuning Make a Difference},
-               booktitle = {CVPR},
-               year = {2022}
-}
+Our implementation is mainly based on the following codebases. We gratefully thank the authors for their wonderful works.
+[PMF](https://github.com/hushell/pmf_cvpr22)
 ```
